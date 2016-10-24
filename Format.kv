@@ -1,0 +1,206 @@
+<MainMenu>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: '20'
+		Label:
+			id: 'label_title'
+			text: root.title
+			valign: 'middle'
+            halign: 'center'
+            font_size: '18sp'
+		Label:
+			id: 'label_descrip'
+			text: root.description
+			valign: 'middle'
+            halign: 'left'
+            font_size: '18sp'
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				id: 'btn_mas_info'
+				text: 'Más Información'
+				size_hint: (1, 0.3)
+				border: (6, 6, 6, 6)
+				on_press: 
+					root.manager.current = 'descrip_screen'
+					root.manager.transition.direction = 'left'
+			Button:
+				id: 'btn_comenzar'
+				text: 'Comenzar una nueva prueba'
+				size_hint: (1, 0.3)
+				border: (6, 6, 6, 6)
+				on_press:
+					root.manager.current = 'menupruebas_screen'
+					root.manager.transition.direction = 'left'
+			Button:
+				id: 'btn_config'
+				text: 'Configuración'
+				size_hint: (1, 0.3)
+				border: (6, 6, 6, 6)
+				on_press:
+					root.manager.current = 'config_screen'
+					root.manager.get_screen('config_screen').build()
+					root.manager.transition.direction = 'left'
+			Button:
+				id: 'btn_salir'
+				text: 'Salir'
+				size_hint: (1, 0.3)
+				border: (6, 6, 6, 6)
+				on_press:
+					root.manager.current = 'quit_screen'
+					root.manager.transition.direction = 'left'
+<Config>
+    BoxLayout:
+        id: layout_screen_Configuracion
+        name: layout_screen_Configuracion
+        orientation: 'horizontal'
+<ComenzarPrueba>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 20
+		Label:
+			text: 'Por favor, selecciona una opción'
+		BoxLayout:
+			orientation: 'horizontal'
+			spacing: 20
+			Button:
+				text: root.descrip_menu_comenzar_prueba
+				size_hint: (1, 0.3)
+				on_press:
+					root.manager.current ='formsujeto_screen'
+					root.manager.transition.direction = 'left'
+			Button:
+				text: 'Ir a pruebas'
+				size_hint: (1, 0.3)
+				on_press:
+					root.manager.current = 'menupruebas_screen'
+					root.manager.transition.direction = 'left'
+<FormularioSujeto>:
+	BoxLayout:
+	    id: layout_screen_Formulario_Sujeto
+	    name: layout_screen_Formulario_Sujeto
+	    orientation: 'vertical'
+<MenuPruebas>
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			text: 'Pruebas '
+			size_hint: (1, 0.5)
+		Label:
+			text: root.descripcion_pruebas
+			valign: 'middle'
+            halign: 'center'
+			size_hint: (1, 0.5)
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				text: 'Visual Search'
+				size_hint: (1, 0.3)
+				on_press:
+				    root.manager.get_screen('menupruebas_screen').prueba_seleccionada(0)
+					root.manager.current = 'formsujeto_screen'
+					root.manager.get_screen('formsujeto_screen').build()
+					root.manager.transition.direction= 'down'
+			Button:
+				text: 'Motor Image'
+				size_hint: (1, 0.3)
+				on_press:
+				    root.manager.get_screen('menupruebas_screen').prueba_seleccionada(1)
+					root.manager.current= 'formsujeto_screen'
+					root.manager.get_screen('formsujeto_screen').build()
+					root.manager.transition.direction= 'down'
+			Button:
+				size_hint: (1, 0.3)
+				text: 'Cajas'
+				on_press:
+				    root.manager.get_screen('menupruebas_screen').prueba_seleccionada(2)
+					root.manager.current= 'formsujeto_screen'
+					root.manager.get_screen('formsujeto_screen').build()
+					root.manager.transition.direction= 'down'
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				valign: 'middle'
+	            halign: 'center'
+				text: 'Regresar al Menu'
+				size_hint: (1, 0.3)
+				on_press:
+					root.manager.current= 'mainmenu_screen'
+					root.manager.transition.direction= 'up'
+			Button:
+				valign: 'middle'
+	            halign: 'center'
+				text: 'Salir'
+				size_hint: (1, 0.3)
+				on_press:
+					root.manager.current= 'quit_screen'
+					root.manager.transition.direction= 'up'
+<Descrip>:
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			text: root.full_descrip
+			size_hint: (1, 1)
+			valign: 'middle'
+			halign: 'left'
+			font_size: '18sp'
+		Button:
+			text: 'Regresar al Menu'
+			halign: 'center'
+			size_hint: (1, 0.1)
+			on_press:
+				root.manager.current = 'mainmenu_screen'
+				root.manager.transition.direction = 'right'
+
+<MotorIm>:
+	BoxLayout:
+		id: layout_screen_Motor
+	    name: layout_screen_Motor
+		orientation: 'vertical'
+
+<VisualSearch>:
+	BoxLayout:
+	    id: layout_screen_Visual
+	    name: layout_screen_Visual
+		orientation: 'vertical'
+
+<CincoCajas>:
+	BoxLayout:
+		id: layout_screen_Box
+	    name: layout_screen_Box
+		orientation: 'vertical'
+<Quit>
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			text: 'Estás a punto de salir del \nSISTEMA DE ADQUISICIÓN DE DATOS PARA INTERFACES CEREBRALES\n¿Estás seguro?'
+			valign: 'middle'
+            halign: 'center'
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				text: 'Menu'
+				size_hint: (1, 0.3)
+				on_press:
+					root.manager.current= 'mainmenu_screen'
+					root.manager.transition.direction= 'right'
+			Button:
+				text: 'Salir'
+				size_hint: (1, 0.3)
+				on_press:
+					root.salir()
+<FormularioConfigVisual>
+    BoxLayout:
+        id: layout_screen_config_visual
+        name: layout_screen_config_visual
+        orientation: 'vertical'
+<FormularioConfigMotoras>
+    BoxLayout:
+        id: layout_screen_config_Motor
+        name: layout_screen_config_Motor
+        orientation: 'vertical'
+<FormularioConfigCajas>
+    BoxLayout:
+        id: layout_screen_config_box
+        name: layout_screen_config_box
+        orientation: 'vertical'
